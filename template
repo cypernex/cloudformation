@@ -1,0 +1,64 @@
+Resources:
+  AppNode:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0f39d06d145e9bb63
+      KeyName: Influx20
+      SecurityGroups:
+        - !Ref AppNodeSG
+      UserData: !Base64 >
+        #!/bin/bash
+
+        apt-get update -qq
+
+        curl -fsSL https://get.docker.com -o get-docker.sh
+
+        sh get-docker.sh
+
+        curl -L
+        "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname
+        -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+        sudo chmod +x /usr/local/bin/docker-compose
+
+        cd /
+
+        git clone
+        https://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@github.com/cypernex/smartsite.git
+
+        chmod -R 777 /smartsite
+
+        cd /smartsite
+
+        curl -H 'Authorization: token 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'
+        -o docker-compose.yml
+        https://raw.githubusercontent.com/cypernex/docker-compose/master/tingstack.yml
+
+        docker-compose up 
+  AppNodeSG:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: for the app nodes that allow ssh
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '8086'
+          ToPort: '8086'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '3000'
+          ToPort: '3000'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '1880'
+          ToPort: '1880'
+          CidrIp: 0.0.0.0/0
+

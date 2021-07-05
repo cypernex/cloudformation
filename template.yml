@@ -32,7 +32,7 @@ Resources:
 
         cd smartsite
 
-        curl -H 'Authorization: token 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' -o docker-compose.yml https://raw.githubusercontent.com/cypernex/docker-compose/master/tingstack.yml
+        curl -o docker-compose.yml https://raw.githubusercontent.com/cypernex/docker-compose/master/tingstack.yml
 
         docker-compose up 
   AppNodeSG:

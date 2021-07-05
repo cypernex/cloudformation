@@ -34,7 +34,7 @@ Resources:
 
         curl -o docker-compose.yml https://raw.githubusercontent.com/cypernex/docker-compose/master/tingstack.yml
 
-        docker-compose up 
+        docker-compose -f /home/ec2-user/smartsite/docker-compose.yml up 
   AppNodeSG:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:

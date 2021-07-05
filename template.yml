@@ -25,8 +25,7 @@ Resources:
         cd /
 
         sudo yum install git -y
-        
-        git clone https://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@github.com/cypernex/smartsite.git
+        git clone https://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@github.com/cypernex/smartsite.git
 
         chmod -R 777 /smartsite
 

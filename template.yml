@@ -3,7 +3,7 @@ Resources:
     Type: 'AWS::EC2::Instance'
     Properties:
       InstanceType: t2.micro
-      ImageId: ami-0f39d06d145e9bb63
+      ImageId: ami-05064bb33b40c33a2
       KeyName: Influx20
       SecurityGroups:
         - !Ref AppNodeSG
@@ -21,17 +21,18 @@ Resources:
         sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
         
         sudo chmod +x /usr/local/bin/docker-compose
+
+        yum install git -y
         
-        cd /
+        cd /home/ec2-user
+        
+        git clone https://github.com/cypernex/smartsite.git
 
-        sudo yum install git -y
-        git clone https://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@github.com/cypernex/smartsite.git
+        chmod -R 777 /home/ec2-user/smartsite
 
-        chmod -R 777 /smartsite
+        cd smartsite
 
-        cd /smartsite
-
-        curl -H 'Authorization: token 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' -o docker-compose.yml https://raw.githubusercontent.com/cypernex/docker-compose/master/tingstack.yml
+        curl -H 'Authorization: token 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' -o docker-compose.yml https://raw.githubusercontent.com/cypernex/docker-compose/master/tingstack.yml
 
         docker-compose up 
   AppNodeSG:
@@ -59,4 +60,3 @@ Resources:
           FromPort: '1880'
           ToPort: '1880'
           CidrIp: 0.0.0.0/0
-

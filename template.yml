@@ -16,24 +16,21 @@ Resources:
 
         sh get-docker.sh
 
-        curl -L
-        "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname
-        -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-
-        sudo chmod +x /usr/local/bin/docker-compose
+        COMPOSE_VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4)
+        sh -c "curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose"
+        chmod +x /usr/local/bin/docker-compose
+        sh -c "curl -L https://raw.githubusercontent.com/docker/compose/${COMPOSE_VERSION}/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose"
+        docker-compose -v
 
         cd /
 
-        git clone
-        https://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@github.com/cypernex/smartsite.git
+        git clone https://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@github.com/cypernex/smartsite.git
 
         chmod -R 777 /smartsite
 
         cd /smartsite
 
-        curl -H 'Authorization: token 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'
-        -o docker-compose.yml
-        https://raw.githubusercontent.com/cypernex/docker-compose/master/tingstack.yml
+        curl -H 'Authorization: token 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' -o docker-compose.yml https://raw.githubusercontent.com/cypernex/docker-compose/master/tingstack.yml
 
         docker-compose up 
   AppNodeSG:

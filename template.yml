@@ -36,9 +36,9 @@ Resources:
 
         docker-compose up -d
         
-        sleep 10
+        docker-compose down
         
-        docker-compose restart
+        docker-compose up
         
         
   AppNodeSG:

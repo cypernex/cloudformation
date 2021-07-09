@@ -29,17 +29,10 @@ Resources:
         git clone https://github.com/cypernex/smartsite.git
 
         chmod -R 777 /home/ec2-user/smartsite
-
-        cd smartsite
-
+        
         curl -o docker-compose.yml https://raw.githubusercontent.com/cypernex/docker-compose/master/tingstack.yml
 
         docker-compose up -d
-        
-        docker-compose down
-        
-        docker-compose up
-        
         
   AppNodeSG:
     Type: 'AWS::EC2::SecurityGroup'

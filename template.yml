@@ -22,17 +22,19 @@ Resources:
         
         sudo chmod +x /usr/local/bin/docker-compose
 
-        yum install git -y
+        sudo yum install git -y
         
         cd /home/ec2-user
         
         git clone https://github.com/cypernex/smartsite.git
 
         chmod -R 777 /home/ec2-user/smartsite
-        
+
         curl -o docker-compose.yml https://raw.githubusercontent.com/cypernex/docker-compose/master/tingstack.yml
 
-        docker-compose up -d
+        sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+        sudo docker-compose up
         
   AppNodeSG:
     Type: 'AWS::EC2::SecurityGroup'

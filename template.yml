@@ -34,7 +34,12 @@ Resources:
 
         sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
-        sudo docker-compose up
+        sudo docker-compose up -d 
+        
+        docker exec ec2-user_node-red_1 npm install node-red-contrib-digitaloak-mqtt
+        docker exec ec2-user_node-red_1 npm install node-red-contrib-loop-processing
+        docker exec ec2-user_node-red_1 npm install node-red-contrib-redis
+        docker exec ec2-user_node-red_1 npm install node-red-dashboard
         
   AppNodeSG:
     Type: 'AWS::EC2::SecurityGroup'
